@@ -6,6 +6,6 @@ typedef struct {
 	short viewHeight;
 } GameRenderer;
 
-int init_renderer();
+int initRenderer();
 
 #endif

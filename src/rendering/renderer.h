@@ -6,8 +6,8 @@
 typedef struct Renderer {
 	void (*render)(struct Renderer* renderer, const struct Engine* engine);
 	void (*shutdown)(struct Renderer* renderer);
-	int (*uploadTexture)(struct Renderer* renderer, );
+	int (*uploadTexture)(struct Renderer* renderer, Texture* texture);
 	void* openglContext;
-};
+} Renderer;
 
 #endif
