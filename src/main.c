@@ -1,6 +1,8 @@
 #include <stdio.h>
-#include "SDL.h"
 #include <glad/glad.h>
+#include "SDL.h"
+#include "engine.h"
+#include "file_functions.h"
 
 int glWindowWidth = 1000;
 int glWindowHeight = 800;
@@ -47,6 +49,16 @@ int main(int argc, const char* argv[]) {
 
 	glViewport(0, 0, glWindowWidth, glWindowHeight);
 	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+
+	Renderer openGLRenderer;
+
+	EngineSettings engineSettings;
+	engineSettings.assetsPath = "assets/";
+	engineSettings.levelsPath = "levels/";
+	setFileDirectory(PATH_ASSETS, engineSettings.assetsPath);
+	setFileDirectory(PATH_LEVELS, engineSettings.levelsPath);
+	engineSettings.renderHeight = glWindowHeight;
+	engineSettings.renderWidth = glWindowWidth;
 
 	int quitGame = 0;
 

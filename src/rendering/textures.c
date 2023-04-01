@@ -46,3 +46,10 @@ int loadTexture(Texture* texture, const char* path) {
 
 	return 0;
 }
+
+int freeTexture(Texture* texture) {
+	if (texture && texture->texData) {
+		free(texture->texData);
+		texture->texData = NULL;
+	}
+}

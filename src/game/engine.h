@@ -3,6 +3,13 @@
 
 #include "render_system.h"
 
+typedef struct {
+	unsigned int levelNum;
+	char** mapArr;
+	unsigned int mapWidth;
+	unsigned int mapHeight;
+} CurrLevel;
+
 typedef enum {
 	SCREEN_TITLE = 0,
 	SCREEN_LOADING,
@@ -10,7 +17,7 @@ typedef enum {
 } CurrSceneType;
 
 typedef struct {
-	const char* dataPath;
+	const char* assetsPath;
 	const char* levelsPath;
 	short renderWidth;
 	short renderHeight;
@@ -18,6 +25,7 @@ typedef struct {
 
 typedef struct Engine {
 	CurrSceneType currSceneType;
+	CurrLevel currLevel;
 	GameRenderer renderer;
 	EngineSettings settings;
 	int paused;

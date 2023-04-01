@@ -17,5 +17,6 @@ typedef struct {
 } Texture;
 
 int loadTexture(Texture* texture, const char* path);
+int freeTexture(Texture* texture);
 
 #endif
