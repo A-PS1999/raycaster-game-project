@@ -2,13 +2,13 @@
 #include "file_functions.h"
 
 int initRenderer(GameRenderer* renderSystem, struct Engine* engine, Renderer* renderer, short renderWidth, short renderHeight) {
-	if (!(renderSystem && renderer)) return 1;
+	if (!(renderSystem && renderer)) return 0;
 
 	renderSystem->viewWidth = renderWidth;
 	renderSystem->viewHeight = renderHeight;
 	renderSystem->renderer = renderer;
 
-	return 0;
+	return 1;
 }
 
 int loadTextureToRenderer(GameRenderer* renderSystem, int index, const char* path) {

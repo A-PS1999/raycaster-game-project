@@ -36,13 +36,13 @@ int main(int argc, const char* argv[]) {
 
 	if (!window || !context) {
 		printf("Error: Failed to create window and OpenGL context\n");
-		return 1;
+		return 0;
 	}
 
 	if (!gladLoadGLLoader((GLADloadproc)SDL_GL_GetProcAddress)) {
 		printf("Failed to initialise GLAD\n");
 		SDL_GL_DeleteContext(context);
-		return 1;
+		return 0;
 	}
 
 	SDL_GL_SetSwapInterval(1);
