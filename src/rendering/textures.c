@@ -49,7 +49,7 @@ int loadTexture(Texture* texture, const char* path) {
 
 int freeTexture(Texture* texture) {
 	if (texture && texture->texData) {
-		free(texture->texData);
+		stbi_image_free(texture->texData);
 		texture->texData = NULL;
 	}
 }

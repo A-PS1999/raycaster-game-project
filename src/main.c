@@ -48,7 +48,6 @@ int main(int argc, const char* argv[]) {
 	SDL_GL_SetSwapInterval(1);
 
 	glViewport(0, 0, glWindowWidth, glWindowHeight);
-	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 
 	Renderer openGLRenderer;
 

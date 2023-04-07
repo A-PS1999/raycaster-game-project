@@ -12,14 +12,16 @@ typedef struct {
 	Texture textures[MAX_TEXTURES];
 } GameRenderer;
 
-int initRenderer(GameRenderer* renderSystem,
+int initGameRenderer(GameRenderer* renderSystem,
 				struct Engine* engine,
 				Renderer* renderer,
 	            short renderWidth,
 	            short renderHeight);
 
+void shutdownGameRenderer(GameRenderer* renderSystem, struct Engine* engine);
+
 int loadTextureToRenderer(GameRenderer* renderSystem, int index, const char* path);
 
-void renderWorld(GameRenderer* renderSystem, const struct Engine* engine);
+void renderSystemRender(GameRenderer* renderSystem, const struct Engine* engine);
 
 #endif
