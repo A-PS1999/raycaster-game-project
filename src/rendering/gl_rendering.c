@@ -10,6 +10,7 @@ enum {
 
 typedef struct {
 	ShaderProgram programs[MAX_SHADER_PROGRAMS];
+	GLuint triangleVAO;
 } GLStateContext;
 
 GLenum getTextureFormat(TexFormat texFormat) {
@@ -81,10 +82,25 @@ int initFrameBuffer(Renderer* renderer, short width, short height) {
 	return 1;
 }
 
-void deleteFrameBuffer(struct Renderer* renderer) {
+void deleteFrameBuffer(Renderer* renderer) {
 	glDeleteTextures(1, &renderer->texColorBuffer);
 	glDeleteRenderbuffers(1, &renderer->renderBuffer);
 	glDeleteFramebuffers(1, &renderer->frameBuffer);
+}
+
+void drawToFullscreenTriangle(Renderer* renderer) {
+	GLStateContext* context = renderer->openglContext;
+
+	glBindFramebuffer(GL_FRAMEBUFFER, 0);
+	glDisable(GL_DEPTH_TEST);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+	ShaderProgram* fullscreenTriangleProg = context->programs + SHADER_SCREEN_TRIANGLE;
+	glUseProgram(fullscreenTriangleProg->programId);
+
+	glBindTexture(GL_TEXTURE_2D, renderer->texColorBuffer);
+	glBindVertexArray(context->triangleVAO);
+	glDrawArrays(GL_TRIANGLES, 0, 3);
 }
 
 void glRenderingShutdown(Renderer* renderer) {
@@ -94,6 +110,8 @@ void glRenderingShutdown(Renderer* renderer) {
 		deleteShaderProgram(contextToShutdown->programs + i);
 	}
 
+	glDeleteVertexArrays(1, &contextToShutdown->triangleVAO);
+
 	free(renderer->openglContext);
 	renderer->openglContext = NULL;
 }
@@ -101,9 +119,11 @@ void glRenderingShutdown(Renderer* renderer) {
 int glRenderingInit(Renderer* renderer, const char* shadersLocation) {
 	GLStateContext* context;
 
-	if (context = malloc(sizeof(GLStateContext)) == NULL) {
+	if ((context = malloc(sizeof(*context)) == NULL)) {
 		return 0;
 	}
+
+	glGenVertexArrays(1, &context->triangleVAO);
 
 	renderer->openglContext = context;
 	renderer->shutdown = glRenderingShutdown;
