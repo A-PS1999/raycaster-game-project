@@ -59,21 +59,11 @@ int main(int argc, const char* argv[]) {
 	engineSettings.renderHeight = glWindowHeight;
 	engineSettings.renderWidth = glWindowWidth;
 
-	int quitGame = 0;
+	Engine gameEngine;
 
-	while (!quitGame) {
-		SDL_Event e;
+	initEngine(&gameEngine, &openGLRenderer, engineSettings);
 
-		while (SDL_PollEvent(&e)) {
-			switch (e.type) {
-				case SDL_QUIT:
-					quitGame = 1;
-					break;
-				case SDL_KEYUP:
-					if (e.key.keysym.sym == SDLK_ESCAPE) quitGame = 1;
-					break;
-			}
-		}
+	while (!gameEngine.quit) {
 
 
 		SDL_GL_SwapWindow(window);

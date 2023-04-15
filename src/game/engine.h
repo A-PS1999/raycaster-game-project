@@ -11,10 +11,9 @@ typedef struct {
 } CurrLevel;
 
 typedef enum {
-	SCREEN_TITLE = 0,
-	SCREEN_LOADING,
+	SCREEN_MENU = 0,
 	SCREEN_GAMEPLAY
-} CurrSceneType;
+} CurrScreenType;
 
 typedef struct {
 	const char* assetsPath;
@@ -24,11 +23,16 @@ typedef struct {
 } EngineSettings;
 
 typedef struct Engine {
-	CurrSceneType currSceneType;
+	CurrScreenType currScreenType;
 	CurrLevel currLevel;
 	GameRenderer renderer;
 	EngineSettings settings;
 	int paused;
+	int quit;
 } Engine;
+
+extern Engine gameEngine;
+
+int initEngine(Engine* engine, Renderer* renderer, EngineSettings settings);
 
 #endif
