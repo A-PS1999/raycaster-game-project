@@ -6,11 +6,16 @@
 #include "cglm.h"
 
 typedef struct PlayerData {
-	vec2 startingGridXY;
 	vec2 currGridXY;
+	float rotationSpeed;
+	float walkSpeed;
+	float playerWidth;
+	float playerHeight;
 } GamePlayer;
 
-void processGameplayKeyboardInput(const uint8_t keyboardInput);
+extern GamePlayer player;
+
+void processGameplayKeyboardInput(const uint8_t* keyboardInput, float frameTime);
 void processGameplayMouseInput(SDL_Event* e);
 
 #endif

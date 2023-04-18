@@ -2,13 +2,7 @@
 #define GAME_ENGINE_H
 
 #include "render_system.h"
-
-typedef struct {
-	unsigned int levelNum;
-	char** mapArr;
-	unsigned int mapWidth;
-	unsigned int mapHeight;
-} CurrLevel;
+#include "maps.h"
 
 typedef enum {
 	SCREEN_MENU = 0,
@@ -24,7 +18,7 @@ typedef struct {
 
 typedef struct Engine {
 	CurrScreenType currScreenType;
-	CurrLevel currLevel;
+	CurrMap currMap;
 	GameRenderer renderer;
 	EngineSettings settings;
 	int paused;
