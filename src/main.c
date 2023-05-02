@@ -61,7 +61,7 @@ int main(int argc, const char* argv[]) {
 
 	Engine gameEngine;
 
-	initEngine(&gameEngine, &openGLRenderer, engineSettings);
+	initEngine(&gameEngine, &openGLRenderer, &window, engineSettings);
 
 	while (!gameEngine.quit) {
 
