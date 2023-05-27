@@ -4,7 +4,7 @@
 #define MAX_SHADER_PROGRAMS 2
 
 enum {
-	SHADER_WORLD,
+	SHADER_MENU,
 	SHADER_SCREEN_TRIANGLE
 } ShaderList;
 

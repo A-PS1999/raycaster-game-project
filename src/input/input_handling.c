@@ -38,6 +38,6 @@ void handleGameplayInput() {
 	}
 
 	if (gameEngine.currScreenType == SCREEN_GAMEPLAY) {
-		processGameplayKeyboardInput(keyboardInput);
+		processGameplayKeyboardInput(keyboardInput, gameEngine.clock.deltaTime);
 	}
 }

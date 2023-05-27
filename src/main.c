@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <glad/glad.h>
-#include "SDL.h"
-#include "engine.h"
+#include "gl_rendering.h"
 #include "file_functions.h"
 
 int glWindowWidth = 1000;
@@ -50,6 +49,7 @@ int main(int argc, const char* argv[]) {
 	glViewport(0, 0, glWindowWidth, glWindowHeight);
 
 	Renderer openGLRenderer;
+	glRenderingInit(&openGLRenderer, "rendering/shaders/");
 
 	EngineSettings engineSettings;
 	engineSettings.assetsPath = "assets/";
@@ -64,8 +64,8 @@ int main(int argc, const char* argv[]) {
 	initEngine(&gameEngine, &openGLRenderer, &window, engineSettings);
 
 	while (!gameEngine.quit) {
-
-
+		engineUpdate(&gameEngine);
+		engineDoRender(&gameEngine);
 		SDL_GL_SwapWindow(window);
 	}
 

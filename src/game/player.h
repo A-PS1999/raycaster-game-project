@@ -2,7 +2,6 @@
 #define PLAYER_H
 
 #include <stdint.h>
-#include "SDL.h"
 #include "cglm.h"
 
 typedef struct PlayerData {
